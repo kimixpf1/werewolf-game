@@ -1,0 +1,83 @@
+import { BookOpen, Heart, ExternalLink } from 'lucide-react';
+
+export function Footer() {
+  const currentYear = new Date().getFullYear();
+
+  const links = [
+    {
+      title: '权威来源',
+      items: [
+        { label: '人民日报', url: 'http://www.people.com.cn/' },
+        { label: '新华社', url: 'http://www.xinhuanet.com/' },
+        { label: '求是杂志', url: 'http://www.qstheory.cn/' },
+        { label: '中国政府网', url: 'http://www.gov.cn/' },
+      ]
+    },
+    {
+      title: '学习资源',
+      items: [
+        { label: '学习强国', url: 'https://www.xuexi.cn/' },
+        { label: '共产党员网', url: 'https://www.12371.cn/' },
+        { label: '中央党校', url: 'http://www.ccps.gov.cn/' },
+      ]
+    }
+  ];
+
+  return (
+    <footer className="bg-gray-900 text-white">
+      <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 py-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Brand */}
+          <div className="md:col-span-1">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-red-600 to-red-700 flex items-center justify-center flex-shrink-0">
+                <BookOpen className="w-5 h-5 text-white" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <h3 className="text-sm font-bold truncate leading-tight">经济工作重要讲话学习平台</h3>
+                <p className="text-xs text-gray-400 truncate leading-tight">习近平总书记关于经济工作重要讲话精神</p>
+              </div>
+            </div>
+            <p className="text-gray-400 text-sm leading-relaxed">
+              汇集人民日报、新华社、求是杂志等权威媒体发布的关于经济工作的重要讲话、发表文章、重要会议和考察调研动态。
+            </p>
+          </div>
+
+          {/* Links */}
+          {links.map((section, index) => (
+            <div key={index}>
+              <h4 className="text-sm font-semibold mb-3 text-gray-300">{section.title}</h4>
+              <ul className="space-y-2">
+                {section.items.map((item, itemIndex) => (
+                  <li key={itemIndex}>
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-400 hover:text-white transition-colors flex items-center gap-1 text-sm"
+                    >
+                      {item.label}
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom */}
+        <div className="mt-8 pt-6 border-t border-gray-800">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-3">
+            <p className="text-gray-500 text-sm text-center md:text-left">
+              {currentYear} 学习平台 · 仅供学习交流使用
+            </p>
+            <p className="text-gray-500 text-sm flex items-center gap-1">
+              用 <Heart className="w-4 h-4 text-red-500" /> 打造
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
